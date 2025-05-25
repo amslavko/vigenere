@@ -1,37 +1,37 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Szyfr Vigenère</title>
-  <link rel="stylesheet" href="style.css"/>
-</head>
-<body class="cipher-page">
-  <div class="overlay">
-    <div class="container glass">
-      <a href="index.html" class="back-link">← Wróć</a>
-      <h1><img src="assets/lock-icon.png" class="lock-icon" alt="Lock"> Szyfr Vigenère</h1>
-      <form id="cipherForm">
-        <label for="text">Tekst:</label>
-        <textarea id="text" name="text" required></textarea>
+    <!DOCTYPE html>
+    <html lang="pl">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Szyfr Vigenère</title>
+    <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body class="cipher-page">
+    <div class="overlay">
+        <div class="container glass">
+        <a href="index.html" class="back-link">← Wróć</a>
+        <h1><img src="assets/lock-icon.png" class="lock-icon" alt="Lock"> Szyfr Vigenère</h1>
+        <form id="cipherForm">
+            <label for="text">Tekst:</label>
+            <textarea id="text" name="text" required></textarea>
 
-        <label for="key">Słowo kluczowe:</label>
-        <input type="text" id="key" name="key" required>
+            <label for="key">Słowo kluczowe:</label>
+            <input type="text" id="key" name="key" required>
 
-        <div class="radio-group">
-          <label><input type="radio" name="action" value="encrypt" checked> Szyfruj</label>
-          <label><input type="radio" name="action" value="decrypt"> Deszyfruj</label>
+            <div class="radio-group">
+            <label><input type="radio" name="action" value="encrypt" checked> Szyfruj</label>
+            <label><input type="radio" name="action" value="decrypt"> Deszyfruj</label>
+            </div>
+
+            <button type="submit">Wykonaj</button>
+        </form>
+
+        <div id="result-box">
+            <h2>Wynik:</h2>
+            <p id="result"></p>
         </div>
-
-        <button type="submit">Wykonaj</button>
-      </form>
-
-      <div id="result-box">
-        <h2>Wynik:</h2>
-        <p id="result"></p>
-      </div>
+        </div>
     </div>
-  </div>
-  <script src="script.js"></script>
-</body>
-</html>
+    <script src="script.js"></script>
+    </body>
+    </html>

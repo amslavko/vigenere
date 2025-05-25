@@ -1,4 +1,6 @@
 <?php
+include 'db.php'; 
+
 function vigenere($text, $key, $decrypt = false) {
     $result = '';
     $key = strtoupper($key);
@@ -24,16 +26,29 @@ function vigenere($text, $key, $decrypt = false) {
     return $result;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $text = $_POST['text'] ?? '';
-    $key = $_POST['key'] ?? '';
-    $action = $_POST['action'] ?? 'encrypt';
 
-    if (trim($key) === '') {
-        echo "Błąd: pusty klucz.";
-    } else {
-        $decrypt = ($action === 'decrypt');
-        echo vigenere($text, $key, $decrypt);
-    }
+$text = $_POST['text'] ?? '';
+$key = $_POST['key'] ?? '';
+$action = $_POST['action'] ?? 'encrypt';
+
+if (trim($key) === '') {
+    echo "Błąd: pusty klucz.";
+    exit;
 }
+
+$decrypt = ($action === 'decrypt');
+$result = vigenere($text, $key, $decrypt);
+
+
+$stmt = $conn->prepare("INSERT INTO szyfrowania (text, klucz, akcja, wynik) VALUES (?, ?, ?, ?)");
+if ($stmt) {
+    $stmt->bind_param("ssss", $text, $key, $action, $result);
+    $stmt->execute();
+    $stmt->close();
+    echo htmlspecialchars($result); 
+} else {
+    echo "Błąd podczas zapisu do bazy: " . $conn->error;
+}
+
+$conn->close();
 ?>
